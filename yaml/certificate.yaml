@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: selfsigned-cert
+spec:
+  secretName: selfsigned-cert-tls
+  duration: 2880h # 120d
+  renewBefore: 360h # 15d
+  commonName: example.com
+  isCA: false
+  privateKey:
+    size: 2048
+    algorithm: RSA
+    encoding: PKCS1
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
